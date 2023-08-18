@@ -17,10 +17,12 @@ class Snake:
         self.head.color('blue')
 
     def create_snake(self):
+        """ Creates The Snake """
         for position in STARTING_POSITION:
             self.add_segment(position)
 
     def add_segment(self, position):
+        """Creates the snake"""
         new_segment = Turtle(shape='square')
         new_segment.color('red')
         new_segment.penup()
@@ -29,6 +31,7 @@ class Snake:
         self.segments.append(new_segment)
 
     def extend(self):
+        """ Extends the snake length """
         self.add_segment(self.segments[-1].position())
 
     def move(self):

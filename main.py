@@ -25,17 +25,18 @@ while game_on and food_count < 1000000000:
     screen.update()
     time.sleep(0.1)
     snake.move()
+    # Detects a collide with food
     if snake.head.distance(food) < 15:
         food_count += 1
         print(f"first {food_count}")
         food.refresh()
         snake.extend()
         scoreboard.increase_score()
-
+    # Detects a collision with the walls
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         game_on = False
         scoreboard.game_over()
-
+    # Detects collision with itself
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
             game_on = False

@@ -14,6 +14,7 @@ class Food(Turtle):
         self.refresh()
 
     def refresh(self):
+        """Refresh the food and places it on a random place on the screen"""
         self.food_count += 1
         randomx = random.randint(-250, 250)
         randomy = random.randint(-250, 250)
@@ -21,6 +22,7 @@ class Food(Turtle):
         self.goto(randomx, randomy)
 
     def bonus(self):
+        """Generates a big bonus food and place it on a random place on the screen"""
         self.shapesize(stretch_len=1, stretch_wid=1)
         self.color('green')
         randomx = random.randint(-250, 250)
