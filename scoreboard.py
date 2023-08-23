@@ -1,15 +1,15 @@
 from turtle import Turtle
 
-
-ALIGNMENT = "center"
 FONT = ("Courier", 24, "normal")
-
+ALIGNMENT = 'center'
 
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
-        self.score = 0
+        self.score = 0      
         self.color('white')
+        with open("data.txt") as data:
+            self.highscore = int(data.read())
         self.hideturtle()
         self.penup()
         self.goto(0, 270)
@@ -17,15 +17,19 @@ class Scoreboard(Turtle):
 
     def update_scoreboard(self):
         """ Update the scoreboard after successfully eating a food """
-        self.write(f"Score:{self.score}", align=ALIGNMENT, font=FONT)
+        self.clear()
+        self.write(f"Score:{self.score} HighScore:{self.highscore}", align=ALIGNMENT, font=FONT)
+        
+    def reset(self):
+        if self.score > self.highscore:
+            self.highscore = self.score
+            with open("data.txt", "w") as data:
+                data.write(f"{self.highscore}")
 
-    def game_over(self):
-        """Shows game over whenever the game is over"""
-        self.goto(0, 0)
-        self.write(f"GAME OVER🥲", align=ALIGNMENT, font=FONT)
+        self.score = 0
+        self.update_scoreboard()
 
     def increase_score(self):
         """ Update the scoreboard after successfully eating a food """
         self.score += 1
-        self.clear()
         self.update_scoreboard()

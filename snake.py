@@ -6,15 +6,16 @@ DOWN = 270
 RIGHT = 0
 STARTING_POSITION = ((0, 0), (-20, 0), (-40, 0))
 MOVE_DISTANCE = 20
+FONT = ("Courier", 24, "normal")
+ALIGNMENT = 'center'
 
 
-class Snake:
+class Snake():
     def __init__(self):
         self.segments = []
         self.create_snake()
         print(len(self.segments))
         self.head = self.segments[0]
-        self.head.color('blue')
 
     def create_snake(self):
         """ Creates The Snake """
@@ -41,7 +42,13 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
-
+    def reset(self):
+        for seg in self.segments:
+            time.sleep(0.1)
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
 
     def up(self):
         if self.head.heading() != DOWN:
