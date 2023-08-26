@@ -25,20 +25,23 @@ while game_on:
     time.sleep(0.1)
     snake.move()
     # Detects a collide with food
-    if snake.head.distance(food) < 15:
-        food.refresh()
+    if snake.head.distance(food.ball) < 15:   
         snake.extend()
         scoreboard.increase_score()
+        food.eat_ball()
+        
     # Detects a collision with the walls
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         scoreboard.reset()
         snake.reset()
-        
+        food.food_reset()
+
     # Detects collision with itself
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
             scoreboard.reset()
             snake.reset()
+            food.food_reset()
 # create a function that adds the bonus
 # make the bonus appear everytime the scores in divisible by 5, then continue
 screen.exitonclick()

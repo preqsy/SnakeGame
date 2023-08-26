@@ -30,6 +30,6 @@ class Scoreboard(Turtle):
         self.update_scoreboard()
 
     def increase_score(self):
-        """ Update the scoreboard after successfully eating a food """
+        """ increase the score after successfully eating a food """
         self.score += 1
         self.update_scoreboard()
