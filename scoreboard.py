@@ -8,7 +8,15 @@ class Scoreboard(Turtle):
         super().__init__()
         self.score = 0      
         self.color('white')
-        with open("data.txt") as data:
+        try:
+            with open("data.txt") as data:
+                self.highscore = int(data.read())
+                
+        except FileNotFoundError:
+            data = open("data.txt", "w")
+            data.write('0')
+            data.close()
+            data = open("data.txt")
             self.highscore = int(data.read())
         self.hideturtle()
         self.penup()
