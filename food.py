@@ -1,6 +1,5 @@
 from turtle import Turtle
 from ball import Ball
-import random
 
 
 class Food():
@@ -26,6 +25,7 @@ class Food():
     def food_reset(self):
         self.food_count = 0
         self.show_normal_ball()
+        self.ball.refresh()
 
     def show_normal_ball(self):
         self.bonus_ball.hideturtle()
